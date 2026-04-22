@@ -3,12 +3,11 @@ import { createSchema, createYoga } from "graphql-yoga";
 import { Query } from "./resolvers/Query.mjs";
 import { readFileSync } from "node:fs";
 
-const typeDefs = readFileSync("./src/schema/schema.graphql", "utf-8");
-
+const typeDefs = readFileSync("./src/schema/schema.graphql", "utf-8"); //readFileSync prend 2 arguments : le chemin du fichier + l'encodage
+// c vari typedefs accepte les strings mais seulment avec un contenu écrit avec la syntaxe GraphQL et on peut pas mettre un chemin
 const yoga = createYoga({
   schema: createSchema({
-    // Définition du schéma GraphQL ( le contrat : ce que nous offrons à travers notre server GraphQL)
-    // on a ici une seule fonctionnalité : query=requete (pour REST query càd Get)
+    // typedefs : Définition du schéma GraphQL ( le contrat : ce que nous offrons à travers notre server GraphQL)
     typeDefs: typeDefs,
 
     // resolvers : l'implémentation du contrat

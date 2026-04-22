@@ -1,8 +1,11 @@
-enum Status {
+enum Status { 
   TODO
   IN_PROGRESS
   DONE
 }
+// enum c pas Enum !!!!
+
+
 type Todo {
   id: ID!
   title: String!
