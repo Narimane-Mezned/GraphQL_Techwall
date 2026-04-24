@@ -1,18 +1,27 @@
-enum Status { 
+enum Status {
   TODO
   IN_PROGRESS
   DONE
 }
-// enum c pas Enum !!!!
-
+# enum c pas Enum !!!!
 
 type Todo {
   id: ID!
   title: String!
   content: String!
   status: Status!
+  user: User!
+}
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  todos: [Todo]
 }
 type Query {
   hello(name: String!): String
   getTodos: [Todo]!
+  getTodosByID(id: ID!): Todo!
+  getUsers: [User]!
+  getUserByID(id: ID!): User!
 }
