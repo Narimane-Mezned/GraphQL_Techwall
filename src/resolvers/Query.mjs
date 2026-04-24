@@ -1,9 +1,8 @@
 import { log } from "node:console";
-import { db } from "./../db/db.mjs";
 export const Query = {
   hello: (_, { name }) => `Hello ${name || "narimane"} !`,
   // on retourne une string qui dit Hello + le nom passé en argument ou "narimane" si aucun nom n'est passé
-  getTodos: (parent, args, context, info) => {
+  getTodos: (parent, args, { db }, info) => {
     /*console.log("parent : ", parent);
     console.log("args : ", args);
     console.log("context : ", context);
@@ -11,7 +10,7 @@ export const Query = {
     return db.todos;
   },
 
-  getTodosByID: (_, { id }) => {
+  getTodosByID: (_, { id }, { db }, info) => {
     const todo = db.todos.find((todo) => todo.id == id);
     if (!todo) {
       throw new Error(`Todo with id ${id} not found`);
@@ -19,11 +18,11 @@ export const Query = {
     return todo;
   },
 
-  getUsers: (parent, args, context, info) => {
+  getUsers: (parent, args, { db }, info) => {
     return db.user;
   },
 
-  getUserByID: (_, { id }) => {
+  getUserByID: (_, { id }, { db }, info) => {
     const user = db.user.find((user) => user.id == id);
     if (!user) {
       throw new Error(`User with id ${id} not found`);
